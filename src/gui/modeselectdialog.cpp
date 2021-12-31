@@ -10,7 +10,7 @@ ModeSelectDialog::ModeSelectDialog(QWidget* parent, KbMode* currentMode, const Q
     _modeList.removeAll(currentMode);
     ui->label->setText(textLabel);
     // Populate list
-    foreach(KbMode* mode, _modeList)
+    for (KbMode* mode : qAsConst(_modeList))
         ui->modeList->addItem(mode->name());
 }
 

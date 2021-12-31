@@ -33,8 +33,8 @@ struct Key {
             if(!strcmp(name, "ins")) return "Help";
             if(!strcmp(name, "numlock")) return "Clear";
 #elif defined(Q_OS_LINUX)
-            if(!strcmp(name, "lwin")) return "Left Super";
-            if(!strcmp(name, "rwin")) return "Right Super";
+            if(!strcmp(name, "lwin")) return QStringLiteral("Left Super");
+            if(!strcmp(name, "rwin")) return QStringLiteral("Right Super");
 #endif
         }
         return _friendlyName ? _friendlyName : QString(name).toUpper();

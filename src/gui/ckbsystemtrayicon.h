@@ -15,7 +15,7 @@ class CkbSystemTrayIcon : public QSystemTrayIcon {
 
 public:
 #ifdef USE_DBUS_MENU
-    void setIcon(QIcon icon, QString name);
+    void setIcon(const QIcon &icon, const QString &name);
     CkbSystemTrayIcon(const QIcon& icon, const QString iconName, QObject* parent = 0);
     inline void show() { setStatus(KStatusNotifierItem::Active); }
     inline void hide() { setStatus(KStatusNotifierItem::Passive); }

@@ -33,7 +33,7 @@ public:
 
     // Returns the string that's passed to the daemon
     inline QString macroContent() const {
-        return _value.split(":")[1];
+        return _value.split(QStringLiteral(":"))[1];
     }
 
     // Mode-switch action.

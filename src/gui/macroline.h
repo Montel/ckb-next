@@ -10,7 +10,7 @@ public:
         usTime = usTimeMax = MACRO_DELAY_DEFAULT;
         keyDown = true;
     }
-    MacroLine(const QString& _key, const qint64& _usTime, const qint64& _usTimeMax, const bool _keyDown) :
+    MacroLine(const QString& _key, qint64 _usTime, const qint64& _usTimeMax, const bool _keyDown) :
         key(_key), usTime(_usTime), usTimeMax(_usTimeMax), keyDown(_keyDown) {}
     QString key;
     qint64 usTime;

@@ -11,10 +11,10 @@ CkbSystemTrayIcon::CkbSystemTrayIcon(const QIcon& icon, const QString iconName, 
 
 // Not all implementations support passing icons by pixmap
 // Save the icon to /tmp/ and use that instead
-void CkbSystemTrayIcon::setIcon(QIcon icon, QString name)
+void CkbSystemTrayIcon::setIcon(const QIcon &icon, const QString &name)
 {
     // Check if the icon can be found in the theme
-    QIcon::setThemeName("hicolor");
+    QIcon::setThemeName(QStringLiteral("hicolor"));
     QIcon themeicon = QIcon::fromTheme(name);
 
     // GTK's icon search can return icons even if the name doesn't fully match

@@ -40,7 +40,7 @@ static QSettings* globalSettings(){
                 CkbSettings::migrateSettings(true);
 #endif
                 // on other platforms, just mark it as true so that if someone migrates settings from linux to mac, it will not try to migrate
-                _globalSettings->setValue("Program/CkbNextIniMigrationChecked", true);
+                _globalSettings->setValue(QStringLiteral("Program/CkbNextIniMigrationChecked"), true);
             }
             if(!_globalSettings->value("Program/CkbMigrationChecked", false).toBool()){
                 CkbSettings::migrateSettings(false);
@@ -53,7 +53,7 @@ static QSettings* globalSettings(){
                 QString backupName = QString("ckb-next_backup_%1").arg(QDateTime::currentMSecsSinceEpoch() / 1000);
                 QSettings backupSettings(CkbSettings::Format, QSettings::UserScope, "ckb-next", backupName);
                 qInfo() << "Backing up settings to" << backupSettings.fileName();
-                QStringList oldKeys = _globalSettings->allKeys();
+                const QStringList oldKeys = _globalSettings->allKeys();
                 for(const QString& key : oldKeys){
                     QVariant value = _globalSettings->value(key);
                     backupSettings.setValue(key, value);
@@ -82,9 +82,9 @@ bool CkbSettings::isBusy(){
 void CkbSettings::migrateSettings(bool macFormat){
     QSettings* oldSettings;
     if(macFormat)
-        oldSettings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, "ckb-next", "ckb-next");
+        oldSettings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("ckb-next"), "ckb-next");
     else
-        oldSettings = new QSettings("ckb", "ckb");
+        oldSettings = new QSettings(QStringLiteral("ckb"), "ckb");
 
     // On macOS and iOS, allKeys() will return some extra keys for global settings that apply to all applications.
     // These keys can be read using value() but cannot be changed, only shadowed. Calling setFallbacksEnabled(false) will hide these global settings.
@@ -92,7 +92,7 @@ void CkbSettings::migrateSettings(bool macFormat){
     oldSettings->setFallbacksEnabled(false);
     qInfo() << "Looking for old settings in:" << oldSettings->fileName();
     // Check if a basic key exists
-    if(oldSettings->contains("Program/KbdLayout")){
+    if(oldSettings->contains(QStringLiteral("Program/KbdLayout"))){
         qInfo() << "Found, proceeding to migrate.";
         QStringList oldKeys = oldSettings->allKeys();
         foreach (const QString& key, oldKeys){

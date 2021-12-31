@@ -16,9 +16,9 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     inline void append(const MacroLine& ml) {
-        Q_EMIT beginInsertRows(QModelIndex(), macroLines.length(), macroLines.length());
+        beginInsertRows(QModelIndex(), macroLines.length(), macroLines.length());
         macroLines.append(ml);
-        Q_EMIT endInsertRows();
+        endInsertRows();
     }
     inline QModelIndex addBlankElement(){
         const MacroLine ml;
@@ -28,9 +28,9 @@ public:
     inline void clear() {
         if(!length())
             return;
-        Q_EMIT beginRemoveRows(QModelIndex(), 0, macroLines.length() - 1);
+        beginRemoveRows(QModelIndex(), 0, macroLines.length() - 1);
         macroLines.clear();
-        Q_EMIT endRemoveRows();
+        endRemoveRows();
     }
     inline const MacroLine& at(int i) const {
         return macroLines.at(i);

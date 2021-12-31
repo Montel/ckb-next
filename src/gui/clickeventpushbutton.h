@@ -7,7 +7,7 @@
 class ClickEventPushButton : public QToolButton{
     Q_OBJECT
 public:
-    ClickEventPushButton(QWidget* parent = nullptr) : QToolButton(parent), clickedByMouse(false) {}
+    ClickEventPushButton(QWidget* parent = nullptr) : QToolButton(parent) {}
     inline bool isClickedByMouse() {
         bool temp = clickedByMouse;
         clickedByMouse = false;
@@ -16,6 +16,6 @@ public:
 protected:
     virtual void mouseReleaseEvent(QMouseEvent* e) override;
 private:
-    bool clickedByMouse;
+    bool clickedByMouse = false;
 };
 #endif // CLICKEVENTPUSHBUTTON_H

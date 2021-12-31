@@ -19,7 +19,7 @@ private:
     QString parseChangeLog(QByteArray* bytes);
 
 Q_SIGNALS:
-    void checkedForNewVer(QString ver, QString changelog);
+    void checkedForNewVer(const QString &ver, const QString &changelog);
 
 private Q_SLOTS:
     void finished(QNetworkReply* reply);
