@@ -19,7 +19,7 @@ class KbModeEventMgr : public QDialog
 public:
     explicit KbModeEventMgr(QWidget* parent, KbMode* m);
     ~KbModeEventMgr();
-    virtual void closeEvent(QCloseEvent* evt);
+    void closeEvent(QCloseEvent* evt) override;
 
 private Q_SLOTS:
     void on_cancelBtn_clicked();
