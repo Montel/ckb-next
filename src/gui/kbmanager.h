@@ -70,7 +70,7 @@ private:
     static KbManager* _kbManager;
     static QString _guiVersion, _daemonVersion;
 
-    explicit KbManager(QObject* parent = 0);
+    explicit KbManager(QObject* parent = nullptr);
 
     QSet<Kb*> _devices;
     QTimer* _eventTimer, *_scanTimer, *_saveTimer;
