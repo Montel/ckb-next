@@ -30,7 +30,7 @@ public:
     void setDarkCore();
     void setMaxDpi(ushort dpi);
 private:
-    Ui::MPerfWidget *ui;
+    Ui::MPerfWidget *const ui;
 
     KbPerf* perf;
     KbProfile* profile;

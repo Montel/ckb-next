@@ -29,7 +29,7 @@ private Q_SLOTS:
     void on_actionButton_clicked();
 
 private:
-    Ui::FwUpgradeDialog *ui;
+    Ui::FwUpgradeDialog *const ui;
     void closeEvent(QCloseEvent* event);
 
     // FW blob has to be saved to a temporary path for processing.

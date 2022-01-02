@@ -34,7 +34,7 @@ private Q_SLOTS:
     void on_monochromeBox_toggled(bool checked);
 
 private:
-    Ui::ExtraSettingsWidget *ui;
+    Ui::ExtraSettingsWidget *const ui;
 };
 
 #endif // EXTRASETTINGSWIDGET_H

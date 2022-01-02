@@ -26,7 +26,7 @@ public:
 class CkbExternalSettings : public CkbSettingsBase, public QSettings
 {
 public:
-    CkbExternalSettings(const QString& s, const QSettings::Format fmt, const quint16& ver): QSettings(s, fmt), _currentProfileVer(ver) {}
+    CkbExternalSettings(const QString& s, const QSettings::Format fmt, quint16 ver): QSettings(s, fmt), _currentProfileVer(ver) {}
     void        beginGroup(const QString& prefix) { QSettings::beginGroup(prefix); }
     void        endGroup() {QSettings::endGroup(); }
     QStringList childGroups() const {return QSettings::childGroups(); }

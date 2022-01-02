@@ -36,7 +36,7 @@ private:
     void        updatePresets();
     void        setPreset(const QString& newPreset);
 
-    Ui::GradientDialog *ui;
+    Ui::GradientDialog *const ui;
 
 private Q_SLOTS:
     void currentChanged(const QColor& color, bool spontaneous, int position);

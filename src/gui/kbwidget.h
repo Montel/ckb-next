@@ -40,7 +40,7 @@ public Q_SLOTS:
     inline void showFwUpdate()          { on_fwUpdButton_clicked(); }
 
 private:
-    Ui::KbWidget *ui;
+    Ui::KbWidget *const ui;
     quint64 lastAutoSave;
 
     KbMode* currentMode;

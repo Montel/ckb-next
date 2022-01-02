@@ -16,7 +16,7 @@ public:
     ~LegacyLightWidget();
 
 private:
-    Ui::LegacyLightWidget *ui;
+    Ui::LegacyLightWidget *const ui;
 };
 
 #endif // LEGACYLIGHTWIDGET_H

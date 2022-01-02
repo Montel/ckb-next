@@ -28,7 +28,7 @@ public:
     typedef KbPerf::i_hw i_hw;
 
 private:
-    Ui::KPerfWidget *ui;
+    Ui::KPerfWidget *const ui;
 
     KbPerf* perf;
     KbProfile* profile;

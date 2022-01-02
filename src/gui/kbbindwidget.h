@@ -30,7 +30,7 @@ private Q_SLOTS:
     void on_copyButton_clicked();
 
 private:
-    Ui::KbBindWidget *ui;
+    Ui::KbBindWidget *const ui;
 
     KbBind*     bind;
     KbProfile*  profile;

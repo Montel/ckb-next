@@ -85,7 +85,7 @@ private Q_SLOTS:
 #endif
     void iconClicked(QSystemTrayIcon::ActivationReason reason);
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *const ui;
     QSocketNotifier* sigNotifier;
 #ifndef DISABLE_UPDATER
     CkbUpdater* updater;

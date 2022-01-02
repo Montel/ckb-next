@@ -26,10 +26,10 @@ private Q_SLOTS:
     void on_previewBox_clicked(bool checked);
 
 private:
-    Ui::AnimAddDialog *ui;
+    Ui::AnimAddDialog *const ui;
     QList<const AnimScript*> scripts;
 
-    KbLight* _light;
+    KbLight* const _light;
     QStringList _keys;
     bool showPreview;
 };

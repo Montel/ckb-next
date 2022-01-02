@@ -59,7 +59,7 @@ private:
     QStringList selectedKeys;
     bool noReorder;
 
-    Ui::KbAnimWidget *ui;
+    Ui::KbAnimWidget *const ui;
 };
 
 #endif // KBANIMWIDGET_H

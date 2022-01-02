@@ -24,7 +24,7 @@ private Q_SLOTS:
     void downloadFinished(QNetworkReply* reply);
 
 private:
-    Ui::CkbUpdaterWidget *ui;
+    Ui::CkbUpdaterWidget *const ui;
     QString _version, _changelog;
     QNetworkAccessManager* _manager;
     QNetworkReply* _reply;

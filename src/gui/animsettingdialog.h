@@ -25,7 +25,7 @@ public:
     QString name() const;
 
 private:
-    Ui::AnimSettingDialog* ui;
+    Ui::AnimSettingDialog*const  ui;
     QCheckBox*  stopCheck, *kpStopCheck;
     bool        hasRepeat;
 

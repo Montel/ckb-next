@@ -27,7 +27,7 @@ private Q_SLOTS:
     void on_selNoneButton_clicked();
 
 private:
-    Ui::ModeSelectDialog *ui;
+    Ui::ModeSelectDialog *const ui;
     QList<KbMode*> _modeList;
 };
 

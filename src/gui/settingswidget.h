@@ -52,7 +52,7 @@ private Q_SLOTS:
 private:
     QProcess* devDetect;
     QProgressDialog* devDetectProgress;
-    Ui::SettingsWidget *ui;
+    Ui::SettingsWidget *const ui;
     friend class MainWindow;
     ExtraSettingsWidget* extra;
     void updateModifiers();

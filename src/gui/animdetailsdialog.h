@@ -17,7 +17,7 @@ public:
     ~AnimDetailsDialog();
 
 private:
-    Ui::AnimDetailsDialog *ui;
+    Ui::AnimDetailsDialog *const ui;
 };
 
 #endif // ANIMDETAILSDIALOG_H

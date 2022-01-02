@@ -27,7 +27,7 @@ private Q_SLOTS:
     void on_profileList_itemSelectionChanged();
 
 private:
-    Ui::KbProfileDialog *ui;
+    Ui::KbProfileDialog *const ui;
 
     Kb* device;
     KbProfile* activeProfile;
