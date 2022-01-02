@@ -20,7 +20,7 @@ static const QString settingPath = "Program/NewDidLoginItem";
 
 // <=0.2.9 (old) paths
 #ifdef Q_OS_LINUX
-static const QString oldFile = "ckb.desktop";
+static const QString oldFile = QStringLiteral("ckb.desktop");
 #elif defined(Q_OS_MACX)
 static const QString oldFile = "com.ckb.ckb.plist";
 #endif

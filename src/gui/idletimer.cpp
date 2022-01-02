@@ -39,7 +39,7 @@ bool IdleTimer::isWayland(){
     if(!wdesktop.isEmpty())
         return true;
     QString stype(qgetenv("XDG_SESSION_TYPE"));
-    if(stype == "wayland")
+    if(stype == QLatin1String("wayland"))
         return true;
     return false;
 }

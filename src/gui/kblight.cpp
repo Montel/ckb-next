@@ -434,7 +434,7 @@ void KbLight::load(CkbSettingsBase& settings){
     if(_dimming > MAX_DIM)
         _dimming = MAX_DIM;
     // Load RGB settings
-    bool useReal = settings.value("UseRealNames").toBool();
+    bool useReal = settings.value(QStringLiteral("UseRealNames")).toBool();
     {
         SGroup subGroup(settings, "Keys");
         foreach(QString key, settings.childKeys()){
@@ -466,7 +466,7 @@ void KbLight::load(CkbSettingsBase& settings){
 void KbLight::save(CkbSettingsBase& settings){
     if(typeid(settings) == typeid(CkbSettings))
         _needsSave = false;
-    SGroup group(settings, "Lighting");
+    SGroup group(settings, QStringLiteral("Lighting"));
     settings.setValue("KeyMap", _map.name());
     // If the lights were dimmed by the timer, then make sure we save the real dimming value
     settings.setValue("Brightness", (_timerDimmed ? _timerOrigDimming : _dimming));

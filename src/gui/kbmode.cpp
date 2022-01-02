@@ -46,8 +46,8 @@ KbMode::KbMode(Kb* parent, const KeyMap& keyMap, CkbSettingsBase& settings) :
     connect(_light, SIGNAL(updated()), this, SLOT(doUpdate()));
     if(_usbId.guid.isNull())
         _usbId.guid = QUuid::createUuid();
-    if(_name == "")
-        _name = "Unnamed";
+    if(_name.isEmpty())
+        _name = QStringLiteral("Unnamed");
     _light->load(settings);
     _bind->load(settings);
     _perf->load(settings);

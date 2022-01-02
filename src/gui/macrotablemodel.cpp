@@ -255,9 +255,9 @@ bool MacroTableModel::setData(const QModelIndex& index, const QVariant& value, i
             // If the key was blank (means the user is editing a new row), then delete it if we couldn't add it
             if(isNewEntry){
                 const int row = index.row();
-                Q_EMIT beginRemoveRows(QModelIndex(), row, row);
+                beginRemoveRows(QModelIndex(), row, row);
                 macroLines.removeAt(row);
-                Q_EMIT endRemoveRows();
+                endRemoveRows();
             }
             return false;
         }
@@ -331,7 +331,7 @@ QString MacroTableModel::toString(bool rawData){
 QString MacroTableModel::fromString(const QString& input, const bool stopOnError){
     // Replace all "whitespace" characters with ' ', and then remove that as well
     QString str = input.simplified();
-    str.replace(QChar(' '), QString(""));
+    str.remove(QChar(' '));
     QVector<MacroLine> newMacroLines;
     QRegularExpression re("(\\+|-)([a-z0-9]+)(=(\\d+)(_(\\d+))?)?(,|$)");
     QRegularExpressionMatchIterator i = re.globalMatch(str);
@@ -391,9 +391,9 @@ QString MacroTableModel::fromString(const QString& input, const bool stopOnError
     const int len = input.length();
     if(previousEnd != len && stopOnError)
         MACRO_ERROR(previousEnd, len);
-    Q_EMIT beginResetModel();
+    beginResetModel();
     macroLines = newMacroLines;
-    Q_EMIT endResetModel();
+    endResetModel();
     return QString();
 }
 
@@ -404,14 +404,14 @@ void MacroTableModel::removeLastMouseLeftClick(){
         const MacroLine& ml = macroLines.at(i);
         // Once the Key Up was found, start searching for a keydown
         if(foundKeyUp && ml.keyDown && ml.key == "mouse1"){
-            Q_EMIT beginRemoveRows(QModelIndex(), i, i);
+            beginRemoveRows(QModelIndex(), i, i);
             macroLines.removeAt(i);
-            Q_EMIT endRemoveRows();
+            endRemoveRows();
             return;
         } else if(!ml.keyDown && ml.key == "mouse1") {
-            Q_EMIT beginRemoveRows(QModelIndex(), i, i);
+            beginRemoveRows(QModelIndex(), i, i);
             macroLines.removeAt(i);
-            Q_EMIT endRemoveRows();
+            endRemoveRows();
             foundKeyUp = true;
         }
     }
@@ -476,16 +476,16 @@ void MacroTableModel::removeMultipleColumns(QModelIndexList l){
     // and then iterate counting down
     for(int i = l.length(); i--;){
         const int row = l.at(i).row();
-        Q_EMIT beginRemoveRows(QModelIndex(), row, row);
+        beginRemoveRows(QModelIndex(), row, row);
         macroLines.remove(row);
-        Q_EMIT endRemoveRows();
+        endRemoveRows();
     }
 }
 
 bool MacroTableModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int dstrow, int column, const QModelIndex& parent){
-    if(dstrow == -1 || action != Qt::MoveAction || !data->hasFormat("application/x-qabstractitemmodeldatalist"))
+    if(dstrow == -1 || action != Qt::MoveAction || !data->hasFormat(QStringLiteral("application/x-qabstractitemmodeldatalist")))
         return false;
-    QByteArray e = data->data("application/x-qabstractitemmodeldatalist");
+    QByteArray e = data->data(QStringLiteral("application/x-qabstractitemmodeldatalist"));
     QDataStream stream(&e, QIODevice::ReadOnly);
 
     // Set to keep track of selected items in the vector
@@ -511,13 +511,13 @@ bool MacroTableModel::dropMimeData(const QMimeData* data, Qt::DropAction action,
     if(rows.isEmpty())
         return true;
 
-    Q_EMIT beginResetModel();
+    beginResetModel();
 
     // Move the items to the destination index
     std::stable_partition(macroLines.begin(), macroLines.begin() + dstrow, [&rows](const MacroLine& ml){return !rows.contains(&ml);});
     std::stable_partition(macroLines.begin() + dstrow, macroLines.end(), [&rows](const MacroLine& ml){return rows.contains(&ml);});
 
-    Q_EMIT endResetModel();
+    endResetModel();
     return true;
 }
 
@@ -526,7 +526,7 @@ void MacroTableModel::removeEmptyRowAtEnd(){
     if(!macroLines.at(i).key.isEmpty())
         return;
 
-    Q_EMIT beginRemoveRows(QModelIndex(), i, i);
+    beginRemoveRows(QModelIndex(), i, i);
     macroLines.remove(i);
-    Q_EMIT endRemoveRows();
+    endRemoveRows();
 }

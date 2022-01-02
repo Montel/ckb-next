@@ -155,7 +155,7 @@ Qt::DropActions ModeListTableModel::supportedDropActions() const{
 bool ModeListTableModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int dstrow, int column, const QModelIndex& parent){
     // Don't allow dropping after the new mode item
     // it has to be done here as there's no way to check for it in flags()
-    if(dstrow == -1 || action != Qt::MoveAction || dstrow > rowCount() - 1 || !data->hasFormat("application/x-qabstractitemmodeldatalist"))
+    if(dstrow == -1 || action != Qt::MoveAction || dstrow > rowCount() - 1 || !data->hasFormat(QStringLiteral("application/x-qabstractitemmodeldatalist")))
         return false;
     QByteArray e = data->data(QStringLiteral("application/x-qabstractitemmodeldatalist"));
     QDataStream stream(&e, QIODevice::ReadOnly);

@@ -37,7 +37,7 @@ void CkbSystemTrayIcon::setIcon(const QIcon &icon, const QString &name)
     // Keep trying until we find a path that doesn't conflict
     int i;
     for(i = 0; i < 5; i++){
-        path = QDir::tempPath() + QString("/ckb-next-tray-%1.png").arg(Q_RAND());
+        path = QDir::tempPath() + QStringLiteral("/ckb-next-tray-%1.png").arg(Q_RAND());
         if(!QFile::exists(path))
             break;
     }

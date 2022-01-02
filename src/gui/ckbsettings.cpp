@@ -42,7 +42,7 @@ static QSettings* globalSettings(){
                 // on other platforms, just mark it as true so that if someone migrates settings from linux to mac, it will not try to migrate
                 _globalSettings->setValue(QStringLiteral("Program/CkbNextIniMigrationChecked"), true);
             }
-            if(!_globalSettings->value("Program/CkbMigrationChecked", false).toBool()){
+            if(!_globalSettings->value(QStringLiteral("Program/CkbMigrationChecked"), false).toBool()){
                 CkbSettings::migrateSettings(false);
                 // Mark settings as migrated
                 _globalSettings->setValue("Program/CkbMigrationChecked", true);
@@ -50,7 +50,7 @@ static QSettings* globalSettings(){
             // If the current settings are older than the expected settings version, take a backup first
             const quint16 currentSettingsVersion = _globalSettings->value("Program/SettingsVersion", 0).toInt();
             if(currentSettingsVersion < CKB_NEXT_SETTINGS_VER){
-                QString backupName = QString("ckb-next_backup_%1").arg(QDateTime::currentMSecsSinceEpoch() / 1000);
+                QString backupName = QStringLiteral("ckb-next_backup_%1").arg(QDateTime::currentMSecsSinceEpoch() / 1000);
                 QSettings backupSettings(CkbSettings::Format, QSettings::UserScope, "ckb-next", backupName);
                 qInfo() << "Backing up settings to" << backupSettings.fileName();
                 const QStringList oldKeys = _globalSettings->allKeys();
@@ -84,7 +84,7 @@ void CkbSettings::migrateSettings(bool macFormat){
     if(macFormat)
         oldSettings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("ckb-next"), "ckb-next");
     else
-        oldSettings = new QSettings(QStringLiteral("ckb"), "ckb");
+        oldSettings = new QSettings(QStringLiteral("ckb"), QStringLiteral("ckb"));
 
     // On macOS and iOS, allKeys() will return some extra keys for global settings that apply to all applications.
     // These keys can be read using value() but cannot be changed, only shadowed. Calling setFallbacksEnabled(false) will hide these global settings.
@@ -179,7 +179,7 @@ bool CkbSettings::contains(const QString& key) const {
 }
 
 bool CkbSettingsBase::containsGroup(const QString& group){
-    QStringList components = group.split("/");
+    QStringList components = group.split(QStringLiteral("/"));
     if(components.length() > 1){
         // Find sub-group
         SGroup g(*this, components[0]);

@@ -19,7 +19,7 @@ void KbWindowInfo::load(CkbSettingsBase& settings){
     if(typeid(settings) == typeid(CkbSettings))
         _needsSave = false;
 
-    SGroup group(settings, "WindowInfo");
+    SGroup group(settings, QStringLiteral("WindowInfo"));
     enabled = settings.value("enabled", false).toBool();
     SGroup rulegroup(settings, "Rules");
     QStringList children = settings.childGroups();

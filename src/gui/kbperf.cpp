@@ -430,20 +430,20 @@ void KbPerf::update(QFile& cmd, int notifyNumber, bool force, bool saveCustomDpi
     // If the mouse is set to a custom DPI, save it in stage 0
     int stage = pushedDpis.isEmpty() ? dpiBaseIdx : 0;
     if(!pushedDpis.isEmpty() && saveCustomDpi) {
-        cmd.write(QString("dpi 0:%1,%2").arg(dpiCurX).arg(dpiCurY).toLatin1());
+        cmd.write(QStringLiteral("dpi 0:%1,%2").arg(dpiCurX).arg(dpiCurY).toLatin1());
     } else {
         // Otherwise, save stage 0 normally
-        cmd.write(QString("dpi 0:%1,%2").arg(dpiX[0]).arg(dpiY[0]).toLatin1());
+        cmd.write(QStringLiteral("dpi 0:%1,%2").arg(dpiX[0]).arg(dpiY[0]).toLatin1());
     }
     // Save stages 1 - 5
     for(int i = 1; i < DPI_COUNT; i++){
         if(!dpiOn[i] && stage != i)
-            cmd.write(QString(" %1:off").arg(i).toLatin1());
+            cmd.write(QStringLiteral(" %1:off").arg(i).toLatin1());
         else
-        cmd.write(QString(" %1:%2,%3").arg(i).arg(dpiX[i]).arg(dpiY[i]).toLatin1());
+        cmd.write(QStringLiteral(" %1:%2,%3").arg(i).arg(dpiX[i]).arg(dpiY[i]).toLatin1());
     }
     // Save stage selection, lift height, and angle snap
-    cmd.write(QString(" dpisel %1 lift %2 snap %3").arg(stage).arg(_liftHeight).arg(_angleSnap ? "on" : "off").toLatin1());
+    cmd.write(QStringLiteral(" dpisel %1 lift %2 snap %3").arg(stage).arg(_liftHeight).arg(_angleSnap ? "on" : "off").toLatin1());
     // Save DPI colors
     cmd.write(" rgb");
     for(int i = 0; i < DPI_COUNT; i++){
@@ -454,7 +454,7 @@ void KbPerf::update(QFile& cmd, int notifyNumber, bool force, bool saveCustomDpi
         cmd.write(output);
     }
     // Enable indicator notifications
-    cmd.write(QString("\n@%1 inotify all").arg(notifyNumber).toLatin1());
+    cmd.write(QStringLiteral("\n@%1 inotify all").arg(notifyNumber).toLatin1());
     // Set indicator state
     const char* iNames[HW_I_COUNT] = { "num", "caps", "scroll" };
     for(int i = 0; i < HW_I_COUNT; i++){

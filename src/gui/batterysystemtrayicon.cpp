@@ -8,13 +8,13 @@ void BatteryStatusTrayIcon::setBattery(uint battery, BatteryStatus charging){
     const QString chgstatstr = BATTERY_STATUS_VALUES[charging];
 
 
-    QString iconName = charging == BatteryStatus::BATT_STATUS_CHARGING ? QString("charging") : QString::number(chglvl);
-    QIcon icon = QIcon(QString(":/img/ckb-next_battery_%1.png").arg(iconName));
-    setIcon(icon, QString("ckb-next_battery_%1").arg(iconName));
+    QString iconName = charging == BatteryStatus::BATT_STATUS_CHARGING ? QStringLiteral("charging") : QString::number(chglvl);
+    QIcon icon = QIcon(QStringLiteral(":/img/ckb-next_battery_%1.png").arg(iconName));
+    setIcon(icon, QStringLiteral("ckb-next_battery_%1").arg(iconName));
 
-    const QString tooltip = QString("%1:").arg(name);
+    const QString tooltip = QStringLiteral("%1:").arg(name);
     const QString batlevelstr = batTrayLevel.arg(chglvlstr, QString::number(battery));
-    const QString subtooltip = QString("%1, %2").arg(batlevelstr, chgstatstr);
+    const QString subtooltip = QStringLiteral("%1, %2").arg(batlevelstr, chgstatstr);
     setToolTip(icon, tooltip, subtooltip);
 
     batLevel->setText(batlevelstr);

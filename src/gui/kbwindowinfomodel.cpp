@@ -188,7 +188,7 @@ int KbWindowInfoModel::addItem()
 {
     const int row = rowCount();
     beginInsertRows(QModelIndex(), row, row);
-    QString name("SuperTuxKart");
+    QString name(QStringLiteral("SuperTuxKart"));
     switch(row){
     case 8:
         name = tr("Click");
@@ -205,7 +205,7 @@ int KbWindowInfoModel::addItem()
     }
     wininfo->items.append({KbWindowInfo::MATCH_TYPE_WINDOW_TITLE, name,
                            KbWindowInfo::MatchFlags(), KbWindowInfo::MATCH_OP_OR});
-    Q_EMIT endInsertRows();
+    endInsertRows();
     return row;
 }
 
@@ -223,7 +223,7 @@ Qt::DropActions KbWindowInfoModel::supportedDropActions() const{
 bool KbWindowInfoModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int dstrow, int column, const QModelIndex& parent){
     if(dstrow == -1 || action != Qt::MoveAction || !data->hasFormat(QStringLiteral("application/x-qabstractitemmodeldatalist")))
         return false;
-    QByteArray e = data->data("application/x-qabstractitemmodeldatalist");
+    QByteArray e = data->data(QStringLiteral("application/x-qabstractitemmodeldatalist"));
     QDataStream stream(&e, QIODevice::ReadOnly);
 
     // Read only the first item. We only need column 0 and there is only a single row selected.
