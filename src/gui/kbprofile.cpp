@@ -29,7 +29,7 @@ KbProfile::KbProfile(Kb* parent, const KeyMap& keyMap, CkbSettingsBase& settings
     const QString importGuid = (typeid(settings) == typeid(CkbExternalSettings) ? settings.childGroups().first() : guid);
     SGroup group(settings, importGuid);
     _name = settings.value("Name").toString().trimmed();
-    if(_name == "")
+    if(_name.isEmpty())
         _name = "Unnamed";
     _usbId.modifiedString(settings.value("Modified").toString());
     if(settings.contains("HwModified"))

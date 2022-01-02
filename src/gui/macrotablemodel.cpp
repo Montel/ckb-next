@@ -181,7 +181,7 @@ QVariant MacroTableModel::data(const QModelIndex& index, int role) const{
                         if(ml.usTimeMax == MacroLine::MACRO_DELAY_DEFAULT)
                             return QString::number(ml.usTime);
                         else
-                            return QString("%1_%2").arg(ml.usTime).arg(ml.usTimeMax);
+                            return QStringLiteral("%1_%2").arg(ml.usTime).arg(ml.usTimeMax);
                     }
                 default:
                     return tr("Unknown");
@@ -193,9 +193,9 @@ QVariant MacroTableModel::data(const QModelIndex& index, int role) const{
     } else if(role == Qt::ToolTipRole){
         if(index.column() == 2){
             if(index.row() == 0)
-                return QString(tr("You can not set a delay before the first key event"));
+                return tr("You can not set a delay before the first key event");
             else if(defaultDelay)
-                return QString(tr("To set a delay, please switch the delay mode to \"as typed\""));
+                return tr("To set a delay, please switch the delay mode to \"as typed\"");
         }
     }
     return QVariant();

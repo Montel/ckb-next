@@ -65,7 +65,7 @@ void KbBind::load(CkbSettingsBase& settings){
     bool useReal = settings.value("UseRealNames").toBool();
     _bind.clear();
     {
-        SGroup subgroup(settings, "Keys");
+        SGroup subgroup(settings, QStringLiteral("Keys"));
         foreach(QString key, settings.childKeys()){
             QString name = key.toLower();
             if(!useReal)
@@ -117,7 +117,7 @@ void KbBind::setGlobalRemap(const QHash<QString, QString>& keyToActual){
 
 void KbBind::loadGlobalRemap(){
     _globalRemap.clear();
-    CkbSettings settings("Program/GlobalRemap");
+    CkbSettings settings(QStringLiteral("Program/GlobalRemap"));
     foreach(const QString& key, settings.childKeys())
         _globalRemap[key] = settings.value(key).toString();
     globalRemapTime = MonotonicClock::msecs();

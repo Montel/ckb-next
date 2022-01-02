@@ -15,9 +15,9 @@ MacroStringEditDialog::~MacroStringEditDialog(){
 }
 
 void MacroStringEditDialog::on_buttonBox_accepted(){
-    QString macro = ui->plainTextEdit->toPlainText();
-    QString err = m->fromString(macro, true);
-    if(err.length()){
+    const QString macro = ui->plainTextEdit->toPlainText();
+    const QString err = m->fromString(macro, true);
+    if(!err.isEmpty()){
         QMessageBox::critical(this, tr("Macro string parse error"), tr("An error occured while parsing at column %1<br><br>Please correct it and try again.").arg(err));
         return;
     }

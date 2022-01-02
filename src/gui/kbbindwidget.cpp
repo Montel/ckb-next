@@ -128,7 +128,7 @@ void KbBindWidget::on_copyButton_clicked(){
     QList<KbMode*> selectedModes = dialog.selection();
     foreach(KbMode* mode, selectedModes){
         KbBind* modeBind = mode->bind();
-        foreach(const QString& key, selection){
+        for (const QString& key : qAsConst(selection)){
             modeBind->setAction(key, bind->action(key));
         }
     }

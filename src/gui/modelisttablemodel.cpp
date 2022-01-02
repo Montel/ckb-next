@@ -14,7 +14,7 @@ ModeListTableModel::ModeListTableModel(Kb *dev, QObject* parent) : QAbstractTabl
 
 void ModeListTableModel::profileAboutToChange(){
     KbProfile* currentProfile = device->currentProfile();
-    Q_EMIT beginResetModel();
+    beginResetModel();
     if(!currentProfile)
         return;
     for(int i = 0; i < currentProfile->modeCount(); i++)
@@ -24,7 +24,7 @@ void ModeListTableModel::profileAboutToChange(){
 void ModeListTableModel::profileChanged(){
     // Signals will have always been connected when this is called
     // and we'll always have a valid profile
-    Q_EMIT endResetModel();
+    endResetModel();
     KbProfile* currentProfile = device->currentProfile();
     for(int i = 0; i < currentProfile->modeCount(); i++){
         connect(currentProfile->at(i)->winInfo(), &KbWindowInfo::enableStateChanged, this, [this, i](){
@@ -138,13 +138,13 @@ bool ModeListTableModel::setData(const QModelIndex& index, const QVariant& value
 int ModeListTableModel::addNewMode(){
     KbMode* newMode = device->newMode();
     // "Add" the new mode item back
-    Q_EMIT beginInsertRows(QModelIndex(), rowCount()-1, rowCount()-1);
+    beginInsertRows(QModelIndex(), rowCount()-1, rowCount()-1);
     device->currentProfile()->append(newMode);
     device->setCurrentMode(newMode);
     const int newrow = rowCount() - 2;
     // Update the previous new mode item with the new mode
     Q_EMIT dataChanged(index(newrow, 0), index(newrow, columnCount()-1), {Qt::DisplayRole, Qt::EditRole, Qt::DecorationRole});
-    Q_EMIT endInsertRows();
+    endInsertRows();
     return newrow;
 }
 
@@ -157,7 +157,7 @@ bool ModeListTableModel::dropMimeData(const QMimeData* data, Qt::DropAction acti
     // it has to be done here as there's no way to check for it in flags()
     if(dstrow == -1 || action != Qt::MoveAction || dstrow > rowCount() - 1 || !data->hasFormat("application/x-qabstractitemmodeldatalist"))
         return false;
-    QByteArray e = data->data("application/x-qabstractitemmodeldatalist");
+    QByteArray e = data->data(QStringLiteral("application/x-qabstractitemmodeldatalist"));
     QDataStream stream(&e, QIODevice::ReadOnly);
 
     // Read only the first item. We only need column 0 and there is only a single row selected.

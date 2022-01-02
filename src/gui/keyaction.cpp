@@ -204,7 +204,7 @@ QString KeyAction::specialInfo(int& parameter) const {
         return "";
     }
     parameter = list[1].toInt();
-    return list[0].replace("$", "");
+    return list[0].remove("$");
 }
 
 int KeyAction::programInfo(QString& onPress, QString& onRelease) const {
@@ -404,7 +404,7 @@ void KeyAction::keyEvent(KbBind* bind, bool down){
             // Key released - stop animation
             anim->stop();
         }
-    } else if(prefix == "$program"){
+    } else if(prefix == QLatin1String("$program")){
         // Launch program
         QString onPress, onRelease;
         int stop = programInfo(onPress, onRelease);

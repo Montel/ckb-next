@@ -115,7 +115,7 @@ void KbPerf::load(CkbSettingsBase& settings){
     if(typeid(settings) == typeid(CkbSettings) && !settings.containsGroup("Performance/Indicators")){
         // Read old indicator settings from the lighting group, if present
         // (ckb <= v0.2.0)
-        SGroup group(settings, "Lighting");
+        SGroup group(settings, QStringLiteral("Lighting"));
         if(settings.contains("InactiveIndicators")){
             bool inOk = false;
             int inactive = settings.value("InactiveIndicators").toInt(&inOk);
@@ -129,7 +129,7 @@ void KbPerf::load(CkbSettingsBase& settings){
                 // Indicators disabled
                 iEnable[MODE] = iEnable[MACRO] = iEnable[LIGHT] = iEnable[LOCK]  = iEnable[MUTE] = false;
             }
-            bool showMute = (settings.value("ShowMute").toInt(&inOk) != 0);
+            bool showMute = (settings.value(QStringLiteral("ShowMute")).toInt(&inOk) != 0);
             if(inOk && !showMute)
                 iEnable[MUTE] = false;
             readIndicators = false;

@@ -179,15 +179,15 @@ bool KbWindowInfoModel::setData(const QModelIndex& index, const QVariant& value,
 
 void KbWindowInfoModel::removeItem(const int row)
 {
-    Q_EMIT beginRemoveRows(QModelIndex(), row, row);
+    beginRemoveRows(QModelIndex(), row, row);
     wininfo->items.remove(row);
-    Q_EMIT endRemoveRows();
+    endRemoveRows();
 }
 
 int KbWindowInfoModel::addItem()
 {
     const int row = rowCount();
-    Q_EMIT beginInsertRows(QModelIndex(), row, row);
+    beginInsertRows(QModelIndex(), row, row);
     QString name("SuperTuxKart");
     switch(row){
     case 8:
@@ -211,9 +211,9 @@ int KbWindowInfoModel::addItem()
 
 void KbWindowInfoModel::clear()
 {
-    Q_EMIT beginRemoveRows(QModelIndex(), 0, rowCount()-1);
+    beginRemoveRows(QModelIndex(), 0, rowCount()-1);
     wininfo->items.clear();
-    Q_EMIT endRemoveRows();
+    endRemoveRows();
 }
 
 Qt::DropActions KbWindowInfoModel::supportedDropActions() const{
@@ -221,7 +221,7 @@ Qt::DropActions KbWindowInfoModel::supportedDropActions() const{
 }
 
 bool KbWindowInfoModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int dstrow, int column, const QModelIndex& parent){
-    if(dstrow == -1 || action != Qt::MoveAction || !data->hasFormat("application/x-qabstractitemmodeldatalist"))
+    if(dstrow == -1 || action != Qt::MoveAction || !data->hasFormat(QStringLiteral("application/x-qabstractitemmodeldatalist")))
         return false;
     QByteArray e = data->data("application/x-qabstractitemmodeldatalist");
     QDataStream stream(&e, QIODevice::ReadOnly);

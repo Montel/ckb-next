@@ -27,7 +27,7 @@ void KbWindowInfo::load(CkbSettingsBase& settings){
         SGroup currentrule(settings, QString::number(i));
         MatchPair mp;
         mp.type = static_cast<MatchType>(settings.value("type").toInt());
-        mp.item = settings.value("item").toString();
+        mp.item = settings.value(QStringLiteral("item")).toString();
         mp.flags = MatchFlags(settings.value("flags").toInt());
         mp.op = static_cast<MatchOperator>(settings.value("op").toInt());
         items.append(mp);

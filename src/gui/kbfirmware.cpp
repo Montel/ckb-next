@@ -20,7 +20,7 @@ KbFirmware::KbFirmware() :
     networkManager = new QNetworkAccessManager(this);
     // Try to find GPG. gpg2 first
     _gpg = new QProcess();
-    _gpg->setProgram("gpg2");
+    _gpg->setProgram(QStringLiteral("gpg2"));
     _gpg->setArguments(QStringList("--version"));
     _gpg->start();
     _gpg->waitForFinished();
@@ -40,7 +40,7 @@ KbFirmware::KbFirmware() :
     if(hasGPG == GPG_UNKNOWN){
         QString output = QString::fromUtf8(_gpg->readAll());
         // Must support RSA keys and SHA256
-        if(output.contains("RSA", Qt::CaseInsensitive) && output.contains("SHA512", Qt::CaseInsensitive)){
+        if(output.contains(QLatin1String("RSA"), Qt::CaseInsensitive) && output.contains("SHA512", Qt::CaseInsensitive)){
             hasGPG = GPG_YES;
         } else {
             hasGPG = GPG_NO;

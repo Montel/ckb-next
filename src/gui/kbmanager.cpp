@@ -123,7 +123,7 @@ void KbManager::fps(int framerate){
 
 float KbManager::parseVersionString(QString version){
     // Remove extraneous info (anything after + or -, anything non-numeric)
-    QStringList dots = version.replace(QRegExp("\\+|-.+"), "").replace(QRegExp("[^\\d\\.]"), "").split(".");
+    QStringList dots = version.remove(QRegExp("\\+|-.+")).replace(QRegExp("[^\\d\\.]"), "").split(".");
     float base = 1.f;
     float res = 0.f;
     // A number like "1.2.3" will result in 1.0203
@@ -171,7 +171,7 @@ void KbManager::scanKeyboards(){
         QString line = connected.readLine().trimmed();
         if(line.isEmpty())
             break;
-        QStringList components = line.split(" ");
+        QStringList components = line.split(QStringLiteral(" "));
         if(components.length() < 2)             // "<path> <serial> <name>" (we're only interested in the first two)
             continue;
         lines.append(components);
