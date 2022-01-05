@@ -47,7 +47,7 @@ void KbAnimWidget::refreshList(){
         return;
     }
     ui->animList->setVisible(true);
-    foreach(KbAnim* anim, newAnimations){
+    for (KbAnim* anim : qAsConst(newAnimations)){
         QListWidgetItem* item = new QListWidgetItem(anim->name(), ui->animList);
         item->setData(Qt::UserRole, anim->guid());
         item->setFlags(item->flags() | Qt::ItemIsEditable);

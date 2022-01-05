@@ -167,22 +167,22 @@ QString KeyAction::friendlyName(const KeyMap& map) const {
 }
 
 QString KeyAction::modeAction(int mode){
-    return QString("$mode:%1").arg(mode);
+    return QStringLiteral("$mode:%1").arg(mode);
 }
 
 QString KeyAction::dpiAction(int level, int customX, int customY){
-    QString action = QString("$dpi:%1").arg(level);
+    QString action = QStringLiteral("$dpi:%1").arg(level);
     if(level == DPI_CUSTOM)
-        action += QString("+%1+%2").arg(customX).arg(customY);
+        action += QStringLiteral("+%1+%2").arg(customX).arg(customY);
     return action;
 }
 
 QString KeyAction::lightAction(int type){
-    return QString("$light:%1").arg(type);
+    return QStringLiteral("$light:%1").arg(type);
 }
 
 QString KeyAction::lockAction(int type){
-    return QString("$lock:%1").arg(type);
+    return QStringLiteral("$lock:%1").arg(type);
 }
 
 QString KeyAction::programAction(const QString& onPress, const QString& onRelease, int stop){

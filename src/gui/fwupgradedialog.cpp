@@ -65,7 +65,7 @@ void FwUpgradeDialog::cleanBlob(){
     if(savePath.isEmpty())
         return;
     QFile(savePath).remove();
-    savePath = "";
+    savePath.clear();
 }
 
 // Returns firmware version if valid for device, 0 if invalid

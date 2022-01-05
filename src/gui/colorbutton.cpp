@@ -65,9 +65,9 @@ void ColorButton::updateImage(){
     painter.fillRect(1, 1, w - 2, h - 2, _color);
     setIcon(QIcon(QPixmap::fromImage(image)));
     if(_setLabel){
-        QString text = QString(" (%1, %2, %3)").arg(_color.red()).arg(_color.green()).arg(_color.blue());
+        QString text = QStringLiteral(" (%1, %2, %3)").arg(_color.red()).arg(_color.green()).arg(_color.blue());
         if(_alpha)
-            text += QString(", %4%").arg(QString::number(_color.alphaF() * 100., 'f', 0));
+            text += QStringLiteral(", %4%").arg(QString::number(_color.alphaF() * 100., 'f', 0));
         setText(text);
     }
 }

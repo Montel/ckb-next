@@ -13,7 +13,7 @@ public:
     void checkForNewVersion();
 
 private:
-    QNetworkAccessManager* _accessManager;
+    QNetworkAccessManager *const _accessManager;
     QString getVersionString(QByteArray* bytes);
     QString _latestVerStr;
     QString parseChangeLog(QByteArray* bytes);

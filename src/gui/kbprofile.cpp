@@ -74,7 +74,7 @@ void KbProfile::save(CkbSettingsBase& settings){
 bool KbProfile::needsSave() const {
     if(_needsSave)
         return true;
-    foreach(KbMode* mode, _modes){
+    for (KbMode* mode : _modes){
         if(mode->needsSave())
             return true;
     }

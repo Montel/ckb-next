@@ -12,7 +12,7 @@ GradientDialogWidget::GradientDialogWidget(QWidget *parent) :
 void GradientDialogWidget::setStops(const QGradientStops& stops){
     _stops = stops;
     _colors.clear();
-    foreach(const QGradientStop& stop, stops){
+    for (const QGradientStop& stop : stops){
         double pos = stop.first;
         if(pos < 0. || pos > 1.)
             continue;

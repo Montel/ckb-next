@@ -5,7 +5,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
-CkbUpdater::CkbUpdater(QObject *parent) : QObject(parent), _accessManager(new QNetworkAccessManager(this)), _latestVerStr(QString()){
+CkbUpdater::CkbUpdater(QObject *parent)
+    : QObject(parent), _accessManager(new QNetworkAccessManager(this))
+{
     connect(_accessManager, &QNetworkAccessManager::finished, this, &CkbUpdater::finished); // FIXME: use finished() on QNetworkReply instead
 }
 

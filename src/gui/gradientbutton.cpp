@@ -8,7 +8,7 @@
 GradientButton::GradientButton(QWidget* parent, bool allowAlpha) :
     QPushButton(parent), _alpha(allowAlpha)
 {
-    connect(this, SIGNAL(clicked()), this, SLOT(pickGradient()));
+    connect(this, &QAbstractButton::clicked, this, &GradientButton::pickGradient);
     setAutoDefault(false);
     setDefault(false);
     fromString("");

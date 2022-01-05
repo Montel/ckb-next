@@ -64,8 +64,9 @@ MacroReader::MacroReader(const QStringList& macroPaths) : timer(nullptr){
         fhandles.append(ptr);
         QLocalSocket* sock = new QLocalSocket();
         connect(sock, &QLocalSocket::readyRead, this, [=] () { macroDataReceived(sock); });
-        if(!sock->setSocketDescriptor(ptr->handle(), QLocalSocket::ConnectedState, QIODevice::ReadOnly))
+        if(!sock->setSocketDescriptor(ptr->handle(), QLocalSocket::ConnectedState, QIODevice::ReadOnly)) {
             qDebug() << "Error setting socket descriptor";
+        }
         fnotifiers.append(sock);
     }
 }
