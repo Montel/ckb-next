@@ -76,7 +76,7 @@ public:
     inline void noAction(const QStringList& keys)                           { foreach(const QString& key, keys) noAction(key); }
 
     // Current win lock state
-    inline bool winLock()                   { return _winLock; }
+    inline bool winLock()  const                 { return _winLock; }
     void        winLock(bool newWinLock)    { _winLock = newWinLock; _needsUpdate = true; }
 
     // Updates bindings to the driver. Write "mode %d" first.

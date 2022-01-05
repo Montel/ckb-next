@@ -44,7 +44,7 @@ private Q_SLOTS:
     void stateChange(Qt::ApplicationState state);
 
 private:
-    KbLight* light;
+    KbLight* light = nullptr;
     QStringList currentSelection;
 
     Ui::KbLightWidget *const ui;

@@ -24,8 +24,8 @@ private:
         QString         name;
         QGradientStops  gradient;
         bool            builtIn;
-        inline Preset(QString _name, bool _builtIn = false)             : name(_name), builtIn(_builtIn) {}
-        inline Preset(QString _name, const QGradientStops& _gradient)   : name(_name), gradient(_gradient), builtIn(false) {}
+        inline Preset(const QString &_name, bool _builtIn = false)             : name(_name), builtIn(_builtIn) {}
+        inline Preset(const QString &_name, const QGradientStops& _gradient)   : name(_name), gradient(_gradient), builtIn(false) {}
         inline Preset()                                                 : builtIn(false) {}
     };
     QMap<QString, Preset>   presets;

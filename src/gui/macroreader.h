@@ -24,8 +24,8 @@ private:
     static constexpr int MACRO_ARRAY_LEN = 24;
 
 Q_SIGNALS:
-    void macroLineRead(QString key, qint64 ustime, bool keydown);
-    void macroReadError(QString key, QString modifiers);
+    void macroLineRead(const QString &key, qint64 ustime, bool keydown);
+    void macroReadError(const QString &key, const QString &modifiers);
 
 public Q_SLOTS:
     void translateQKeyEvent(int keycode, bool down, Qt::KeyboardModifiers modifiers);

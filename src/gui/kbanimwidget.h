@@ -30,7 +30,7 @@ public:
 
 Q_SIGNALS:
     void animChanged(KbAnim* selection);
-    void didUpdateSelection(QStringList keys);
+    void didUpdateSelection(const QStringList &keys);
 
 private Q_SLOTS:
     void on_animList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *prev);

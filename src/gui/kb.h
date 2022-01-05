@@ -168,7 +168,7 @@ private:
     friend class KbManager;
 
     // Creates a keyboard object with the given device path
-    Kb(QObject *parent, const QString& path);
+    explicit Kb(QObject *parent, const QString& path);
 
     inline bool isOpen() const { return cmd.isOpen(); }
 

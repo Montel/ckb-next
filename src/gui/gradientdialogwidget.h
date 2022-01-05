@@ -12,17 +12,17 @@ public:
     explicit GradientDialogWidget(QWidget *parent = nullptr);
 
     void                    setStops(const QGradientStops& stops);
-    inline QGradientStops   stops()                                 { return _stops; }
-    inline int              stopCount()                             { return _stops.count(); }
+    inline QGradientStops   stops() const                                { return _stops; }
+    inline int              stopCount()  const                           { return _stops.count(); }
 
     QColor colorAt(int position);
 
-    inline int  current()                           { return _current; }
+    inline int  current()  const                         { return _current; }
     int         moveCurrent(int to);
     void        setCurrentColor(const QColor& color);
 
 Q_SIGNALS:
-    void currentChanged(QColor color, bool spontaneous, int position);
+    void currentChanged(const QColor &color, bool spontaneous, int position);
 
 private:
     QColor  selected;

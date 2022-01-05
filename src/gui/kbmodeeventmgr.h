@@ -31,7 +31,7 @@ private Q_SLOTS:
 
 private:
     KbWindowInfo* info;
-    Ui::KbModeEventMgr* ui;
+    Ui::KbModeEventMgr*const ui;
     void handleClose();
     KbWindowInfoModel* model;
     QVector<KbWindowInfo::MatchPair> backup;

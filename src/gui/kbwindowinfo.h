@@ -45,7 +45,7 @@ public:
     inline bool needsSave() const { return _needsSave; }
     void load(CkbSettingsBase& settings);
     void save(CkbSettingsBase& settings);
-    inline bool isEmpty() { return items.isEmpty(); }
+    inline bool isEmpty() const { return items.isEmpty(); }
     inline void setEnabled(const bool e) {
         if(enabled == e)
             return;
