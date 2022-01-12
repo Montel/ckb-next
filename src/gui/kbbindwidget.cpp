@@ -125,7 +125,7 @@ void KbBindWidget::on_copyButton_clicked(){
     if(dialog.exec() != QDialog::Accepted)
         return;
     // Copy selected keys to selected modes
-    QList<KbMode*> selectedModes = dialog.selection();
+    const QList<KbMode*> selectedModes = dialog.selection();
     foreach(KbMode* mode, selectedModes){
         KbBind* modeBind = mode->bind();
         for (const QString& key : qAsConst(selection)){

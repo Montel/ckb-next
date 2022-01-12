@@ -40,7 +40,7 @@ CkbUpdaterDialog::CkbUpdaterDialog(const QString& ver, const QString& changelog,
 }
 
 CkbUpdaterDialog::~CkbUpdaterDialog(){
-    if(_manager != nullptr)
+    if(_manager)
         _manager->deleteLater();
     delete ui;
 }
@@ -53,7 +53,7 @@ void CkbUpdaterDialog::on_updateButton_clicked(){
     ui->remindMeLaterButton->setEnabled(false);
     ui->updateButton->setEnabled(false);
     ui->updateButton->setText(tr("Downloading"));
-    if(_manager != nullptr)
+    if(_manager)
         return;
 
     ui->progressBar->show();
@@ -132,7 +132,7 @@ void CkbUpdaterDialog::downloadFinished(QNetworkReply* reply){
         // Close the GUI
         qApp->quit();
     } else {
-        QString host = redirect.host();
+        const QString host = redirect.host();
         if(host != "github-production-release-asset-2e65be.s3.amazonaws.com" && host != "codeload.github.com") {
             reply->deleteLater();
             return;

@@ -55,7 +55,7 @@ QString CkbUpdater::getVersionString(QByteArray* bytes){
 
 QString CkbUpdater::parseChangeLog(QByteArray* bytes){
     QByteArray lbytes = bytes->left(4000); // Don't read too much data
-    QList<QByteArray> bytelist = lbytes.split('\n');
+    const QList<QByteArray> bytelist = lbytes.split('\n');
 
     bool append = false;
     QString changelog;

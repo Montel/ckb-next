@@ -131,7 +131,7 @@ AnimSettingDialog::AnimSettingDialog(QWidget* parent, KbAnim* anim) :
             break;
         case AnimScript::Param::ANGLE:
             widget = new QDial(this);
-            ((QDial*)widget)->setFixedSize(60, 60);
+            widget->setFixedSize(60, 60);
             ((QDial*)widget)->setMinimum(0);
             ((QDial*)widget)->setMaximum(360);
             // this is NOT a typo...     ^

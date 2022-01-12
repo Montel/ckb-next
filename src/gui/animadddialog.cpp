@@ -7,7 +7,7 @@ AnimAddDialog::AnimAddDialog(QWidget *parent, KbLight *light, const QStringList 
 {
     ui->setupUi(this);
     scripts = AnimScript::list();
-    foreach(const AnimScript* script, scripts)
+    for (const AnimScript* script : qAsConst(scripts))
         ui->animBox->addItem(script->name());
     on_animBox_activated(0);
 }

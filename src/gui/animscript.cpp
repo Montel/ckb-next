@@ -31,7 +31,7 @@ QStringList AnimScript::paths(){
     QStringList list(CKB_NEXT_ANIMATIONS_PATH);
     // Path for when running the GUI from the build dir
 #ifdef Q_OS_LINUX
-    QString appDirPath =  QCoreApplication::applicationDirPath();
+    const QString appDirPath =  QCoreApplication::applicationDirPath();
     if(!appDirPath.startsWith("/usr"))
         list << appDirPath;
 #endif
@@ -53,7 +53,7 @@ void AnimScript::scan(){
         if(!dir.exists())
             continue;
 
-        foreach(QString file, dir.entryList(QDir::Files | QDir::Executable)){
+        foreach(const QString &file, dir.entryList(QDir::Files | QDir::Executable)){
 #ifdef Q_OS_LINUX
             // Ignore the GUI and daemon binaries if loading animations from the build dir
             if(file.endsWith("ckb-next") || file.endsWith("ckb-next-daemon"))
@@ -194,11 +194,11 @@ bool AnimScript::load(){
             for(int i = 2; i < count; i++){
                 // Scan name/value setting pairs
                 const QString& setting = components.at(i);
-                QStringList sComponents = setting.split("=");
+                const QStringList sComponents = setting.split("=");
                 if(sComponents.count() != 2)
                     continue;
-                QString sParam = sComponents.first().trimmed();
-                QString value = urlParam(sComponents.last());
+                const QString sParam = sComponents.first().trimmed();
+                const QString value = urlParam(sComponents.last());
                 preset[sParam] = value;
             }
             // If the preset contains a duration, set the repeat time to the same value

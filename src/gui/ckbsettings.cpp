@@ -94,9 +94,9 @@ void CkbSettings::migrateSettings(bool macFormat){
     // Check if a basic key exists
     if(oldSettings->contains(QStringLiteral("Program/KbdLayout"))){
         qInfo() << "Found, proceeding to migrate.";
-        QStringList oldKeys = oldSettings->allKeys();
-        foreach (const QString& key, oldKeys){
-            QVariant value = oldSettings->value(key);
+        const QStringList oldKeys = oldSettings->allKeys();
+        for (const QString& key : oldKeys){
+            const QVariant value = oldSettings->value(key);
             _globalSettings->setValue(key, value);
         }
         qInfo() << oldKeys.count() << "keys migrated.";
@@ -179,7 +179,7 @@ bool CkbSettings::contains(const QString& key) const {
 }
 
 bool CkbSettingsBase::containsGroup(const QString& group){
-    QStringList components = group.split(QStringLiteral("/"));
+    const QStringList components = group.split(QStringLiteral("/"));
     if(components.length() > 1){
         // Find sub-group
         SGroup g(*this, components[0]);

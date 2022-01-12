@@ -95,11 +95,11 @@ QString KeyAction::defaultAction(const QString& key, KeyMap::Model model){
 QString KeyAction::friendlyName(const KeyMap& map) const {
     if(_value.isEmpty())
         return tr("Unbound");
-    QStringList parts = _value.split(":");
+    const QStringList parts = _value.split(":");
     QString prefix = parts[0];
     if(parts.length() < 2){
         KeyMap::Layout layout = map.layout();
-        QString name = KeyMap::friendlyName(_value, layout);
+        const QString name = KeyMap::friendlyName(_value, layout);
         if(name.isEmpty())
             return tr("(Unknown)");
         return name;
