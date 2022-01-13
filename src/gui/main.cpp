@@ -189,7 +189,7 @@ bool checkIfQtCreator(){
     if(!f.exists())
         return false;
 
-    QString exepath = f.canonicalFilePath();
+    const QString exepath = f.canonicalFilePath();
     if(exepath.endsWith("/qtcreator"))
         return true;
 #endif

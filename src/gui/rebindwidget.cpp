@@ -928,7 +928,7 @@ void RebindWidget::on_captureTypeBox_currentIndexChanged(int index){
         return;
     QMessageBox msg;
     // MessageBox takes ownership of the checkbox, so we don't need to delete it
-    msg.setCheckBox(new QCheckBox("Don't warn me again"));
+    msg.setCheckBox(new QCheckBox(tr("Don't warn me again")));
     msg.setIcon(QMessageBox::Warning);
     msg.addButton(QMessageBox::Ok);
     msg.setText(tr("\"Record from all keyboards\" is only recommended if you do not have a keyboard managed by ckb-next.\n"

@@ -9,7 +9,7 @@ KbMode::KbMode(Kb* parent, const KeyMap& keyMap, const QString &guid, const QStr
     _winInfo(new KbWindowInfo(this)),
     _needsSave(true)
 {
-    connect(_light, SIGNAL(updated()), this, SLOT(doUpdate()));
+    connect(_light, &KbLight::updated, this, &KbMode::doUpdate);
     if(_usbId.guid.isNull())
         _usbId.guid = QUuid::createUuid();
 }

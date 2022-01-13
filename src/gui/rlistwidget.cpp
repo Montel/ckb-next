@@ -9,15 +9,15 @@ RListWidget::RListWidget(QWidget *parent) :
 
     reorderTimer.setSingleShot(true);
     reorderTimer.setInterval(100);
-    connect(&reorderTimer, SIGNAL(timeout()), this, SLOT(timerTick()));
+    connect(&reorderTimer, &QTimer::timeout, this, &RListWidget::timerTick);
 
-    connect(this, SIGNAL(itemEntered(QListWidgetItem*)), this, SLOT(enter(QListWidgetItem*)));
-    connect(this, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(change(QListWidgetItem*)));
+    connect(this, &QListWidget::itemEntered, this, &RListWidget::enter);
+    connect(this, &QListWidget::itemChanged, this, &RListWidget::change);
 }
 
 void RListWidget::timerTick(){
     bool reordered = false;
-    QListWidgetItem* reselect = 0;
+    QListWidgetItem* reselect = nullptr;
     QList<QVariant> newItems;
     // Scan the item list to see if they changed
     int c = count();

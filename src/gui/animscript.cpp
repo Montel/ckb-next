@@ -334,8 +334,8 @@ int AnimScript::begin(quint64 timestamp){
     }
     process = new QProcess(this);
     process->setReadChannel(QProcess::StandardOutput);
-    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readProcess()));
-    connect(process, SIGNAL(readyReadStandardError()), this, SLOT(readProcessErr()));
+    connect(process, &QProcess::readyReadStandardOutput, this, &AnimScript::readProcess);
+    connect(process, &QProcess::readyReadStandardError, this, &AnimScript::readProcessErr);
     process->start(_path, QStringList("--ckb-run"));
     qDebug() << "Starting" << _path;
     // Write the keymap to the process

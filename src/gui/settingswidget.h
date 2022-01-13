@@ -16,7 +16,7 @@ class SettingsWidget : public QWidget
 
 public:
     explicit SettingsWidget(QWidget *parent = nullptr);
-    ~SettingsWidget();
+    ~SettingsWidget() override;
 
     // Set text labels
     void setVersion(const QString& version);
@@ -50,8 +50,8 @@ private Q_SLOTS:
     void on_hiDPIBox_clicked(bool checked);
 
 private:
-    QProcess* devDetect;
-    QProgressDialog* devDetectProgress;
+    QProcess* devDetect = nullptr;
+    QProgressDialog* devDetectProgress = nullptr;
     Ui::SettingsWidget *const ui;
     friend class MainWindow;
     ExtraSettingsWidget* extra;

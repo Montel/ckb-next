@@ -12,7 +12,7 @@ CkbUpdaterDialog::CkbUpdaterDialog(const QString& ver, const QString& changelog,
     QDialog(parent),
     ui(new Ui::CkbUpdaterWidget), _version(ver), _changelog(changelog), _manager(nullptr), _redirectCount(0), _url(QString("https://github.com/ckb-next/ckb-next/")), _quitApp(false){
     ui->setupUi(this);
-    QPixmap pixmap = QPixmap(":/img/ckb-next.png").copy(QRect(0, 125, 512, 262)).scaledToWidth(70, Qt::SmoothTransformation);
+    const QPixmap pixmap = QPixmap(QStringLiteral(":/img/ckb-next.png")).copy(QRect(0, 125, 512, 262)).scaledToWidth(70, Qt::SmoothTransformation);
     ui->iconLabel->setPixmap(pixmap);
     ui->iconLabel->setMask(pixmap.mask());
     ui->versionLabel->setText(QString("ckb-next v") + _version);
@@ -88,9 +88,9 @@ void CkbUpdaterDialog::downloadFinished(QNetworkReply* reply){
         QDir dir;
         dir.mkdir("/tmp/ckb-next/");
 #ifdef Q_OS_MAC
-        QString suffix(".dmg");
+        const QString suffix(".dmg");
 #else
-        QString suffix(".tar.gz");
+        const QString suffix(".tar.gz");
 #endif
         QFile outFile(QString("/tmp/ckb-next/v") + _version + suffix);
         if(outFile.open(QFile::WriteOnly)) {

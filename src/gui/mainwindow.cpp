@@ -383,7 +383,7 @@ void MainWindow::timerTick(){
     // Check shared memory for changes
     if(appShare.lock()){
         void* shmData = appShare.data();
-        QStringList commands = QString((const char*)shmData).split("\n");
+        const QStringList commands = QString((const char*)shmData).split("\n");
         // Restore PID, remove all other data
         snprintf((char*)appShare.data(), appShare.size(), "PID %ld", (long)getpid());
         appShare.unlock();
@@ -467,9 +467,9 @@ QIcon MainWindow::getIcon() {
 QString MainWindow::getIconName() {
     // Same as above but return QStrings
     if (CkbSettings::get("Program/RGBIcon", QVariant(true)).toBool())
-        return "ckb-next";
+        return QStringLiteral("ckb-next");
 
-    return "ckb-next-monochrome";
+    return QStringLiteral("ckb-next-monochrome");
 }
 
 void MainWindow::setTabsEnabled(bool e){

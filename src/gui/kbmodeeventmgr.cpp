@@ -17,7 +17,7 @@ KbModeEventMgr::KbModeEventMgr(QWidget* parent, KbMode* m) :
     ui->setupUi(this);
     if(!IdleTimer::isWayland())
         ui->waylandWarning->hide();
-    ui->modeLabel->setText(QString(tr("Switch to mode \"%1\" when:")).arg(m->name()));
+    ui->modeLabel->setText(tr("Switch to mode \"%1\" when:").arg(m->name()));
     ui->tableView->setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(KbWindowInfoModel::COL_MATCH_TYPE, QHeaderView::ResizeToContents);
     ui->tableView->horizontalHeader()->setSectionResizeMode(KbWindowInfoModel::COL_VERB, QHeaderView::ResizeToContents);

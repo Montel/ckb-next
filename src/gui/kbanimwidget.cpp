@@ -142,7 +142,7 @@ void KbAnimWidget::setCurrent(KbAnim* newCurrent){
 
 void KbAnimWidget::setSelectedKeys(const QStringList& keys){
     selectedKeys = keys;
-    if(keys.count() == 0)
+    if(keys.isEmpty())
         ui->keyButton->setVisible(false);
     else
         ui->keyButton->setVisible(true);

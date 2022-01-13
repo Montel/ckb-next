@@ -13,7 +13,7 @@ KbProfileDialog::KbProfileDialog(KbWidget *parent) :
     ui(new Ui::KbProfileDialog), device(parent->device)
 {
     ui->setupUi(this);
-    connect(ui->profileList, SIGNAL(orderChanged()), this, SLOT(profileList_reordered()));
+    connect(ui->profileList, &RListWidget::orderChanged, this, &KbProfileDialog::profileList_reordered);
 
     // Populate profile list
     repopulate();

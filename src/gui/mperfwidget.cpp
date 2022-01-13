@@ -350,7 +350,7 @@ void MPerfWidget::on_copyButton_clicked(){
     ModeSelectDialog dialog(this, profile->currentMode(), profile->modes(), tr("Copy performance settings to:"));
     if(dialog.exec() != QDialog::Accepted)
         return;
-    QList<KbMode*> selectedModes = dialog.selection();
+    const QList<KbMode*> selectedModes = dialog.selection();
     foreach(KbMode* mode, selectedModes){
         *mode->perf() = *perf;
     }

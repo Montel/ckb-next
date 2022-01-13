@@ -13,7 +13,7 @@ KbLightWidget::KbLightWidget(QWidget *parent) :
         ui->animButton->setEnabled(false);
 
     connect(ui->bgButton, SIGNAL(colorChanged(QColor)), this, SLOT(changeColor(QColor)));
-    connect(ui->keyWidget, SIGNAL(selectionChanged(QStringList)), this, SLOT(newSelection(QStringList)));
+    connect(ui->keyWidget, &KeyWidget::selectionChanged, this, &KbLightWidget::newSelection);
     connect(ui->keyWidget, SIGNAL(sidelightToggled()), this, SLOT(toggleSidelight())); // click on a toggle button, like sidelight
     connect(ui->animWidget, SIGNAL(animChanged(KbAnim*)), this, SLOT(changeAnim(KbAnim*)));
     connect(ui->animWidget, SIGNAL(didUpdateSelection(QStringList)), this, SLOT(changeAnimKeys(QStringList)));
@@ -78,8 +78,8 @@ void KbLightWidget::newSelection(const QStringList& selection){
     // Determine selected color (invalid color if no selection or if they're not all the same)
     QColor selectedColor;
     const QColorMap& colorMap = light->colorMap();
-    foreach(const QString& key, selection){
-        QColor color = colorMap.value(key);
+    for (const QString& key : selection){
+        const QColor color = colorMap.value(key);
         if(!selectedColor.isValid())
             selectedColor = color;
         else if(color != selectedColor){
