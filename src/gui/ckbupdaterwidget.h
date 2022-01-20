@@ -26,11 +26,10 @@ private Q_SLOTS:
 private:
     Ui::CkbUpdaterWidget *const ui;
     QString _version, _changelog;
-    QNetworkAccessManager* _manager;
-    QNetworkReply* _reply;
+    QNetworkAccessManager* _manager = nullptr;
+    QNetworkReply* _reply = nullptr;
     int _redirectCount;
     QString _url;
-    bool _quitApp;
 };
 
 #endif // CKBUPDATERWIDGET_H
